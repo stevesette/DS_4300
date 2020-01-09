@@ -8,8 +8,6 @@
 .cache-tests
 .sass-cache/
 .metadata/
-.cache-main
-.cache-tests
 Thumbs.db
 target/
 Servers/
