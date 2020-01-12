@@ -9,7 +9,6 @@ class MySQLConnector:
         host="localhost",
         database="twitter_4300",
     ):
-        print("test")
         self.connection = mysql.connector.connect(
             user=user,
             password=password,
@@ -28,3 +27,4 @@ class MySQLConnector:
         insert_query = f"INSERT INTO {self.database}.tweets " \
                        f"(tweet_id, user_id, tweet_ts, tweet_text)" \
                        f"VALUES {tweet}"
+        self.cursor.execute(insert_query)
