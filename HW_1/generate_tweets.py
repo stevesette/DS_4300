@@ -56,18 +56,21 @@ with open('tweets.csv', 'w') as outfile:
         for k in range(25000):
             randomTweet = ''.join([random.choice(string.ascii_letters + string.digits) for n in range(45)])
             time = randomtimestamp.randomtimestamp(start_year = 2006)
+            timestamp = time[6:10] + '-' + time[3:5] + '-' + time[0:2] + ' ' + time[11:]
             tweet_id = k
-            csv_writer.writerow([tweet_id, i, time,randomTweet])
+            csv_writer.writerow([tweet_id, i, timestamp,randomTweet])
     for i in averageAccounts:
         for k in range(250):
             randomTweet = ''.join([random.choice(string.ascii_letters + string.digits) for n in range(45)])
             time = randomtimestamp.randomtimestamp(start_year=2006)
+            timestamp = time[6:10] + '-' + time[3:5] + '-' + time[0:2] + ' ' + time[11:]
             tweet_id = k+750000
-            csv_writer.writerow([tweet_id, i, time, randomTweet])
+            csv_writer.writerow([tweet_id, i, timestamp, randomTweet])
     for i in newsSourceAccounts:
         for k in range(20):
             randomTweet = ''.join([random.choice(string.ascii_letters + string.digits) for n in range(45)])
             time = randomtimestamp.randomtimestamp(start_year=2006)
+            timestamp = time[6:10] + '-' + time[3:5] + '-' + time[0:2] + ' ' + time[11:]
             tweet_id = k+975000
-            csv_writer.writerow([tweet_id, i, time, randomTweet])
+            csv_writer.writerow([tweet_id, i, timestamp, randomTweet])
     print('done')
