@@ -6,7 +6,7 @@ from odbc_wrappers.MySQLConnector import MySQLConnector
 
 def pick_db(mysql=True):
     if mysql:
-        return MySQLConnector()
+        return MySQLConnector
     else:
         # TODO add redis connector
         return None
@@ -14,7 +14,11 @@ def pick_db(mysql=True):
 
 def read_tweets(filepath):
     with open(filepath, 'r') as infile:
-        return csv.reader(infile)
+        reader = csv.reader(infile)
+        l = []
+        for i in reader:
+            l.append(i)
+        return l
 
 
 # Uploads all tweets, tracking time from start to finish
@@ -35,7 +39,7 @@ def upload_one_tweet(db_conn, tweet):
 
 def main():
     db_type = pick_db()
-    tweets = read_tweets('tweets.csv')
+    tweets = read_tweets('tweets.csv')[1:10000000]
     print(upload_all_tweets(db_type, tweets))
 
 
