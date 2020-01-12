@@ -27,6 +27,6 @@ class MySQLConnector:
     def insert_one(self, tweet):
         insert_query = f"INSERT INTO {self.database}.tweets " \
                        f"(tweet_id, user_id, tweet_ts, tweet_text) " \
-                       f"VALUES {tuple(tweet)}"
-        print(insert_query)
-        self.cursor.execute(insert_query, tweet)
+                       f"VALUES {tuple([int(tweet[0]),int(tweet[1]),tweet[2], tweet[3]])};"
+        self.cursor.execute(insert_query)
+        self.connection.commit()

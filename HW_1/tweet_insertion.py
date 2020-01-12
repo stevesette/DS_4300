@@ -22,6 +22,7 @@ def read_tweets(filepath):
 
 
 # Uploads all tweets, tracking time from start to finish
+# took 0:15:20.633771
 def upload_all_tweets(db_conn, tweets):
     # TODO figure out how this works
     with db_conn() as db:
