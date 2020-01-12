@@ -1,11 +1,73 @@
 from csv import writer
 from datetime import datetime
+import random
+import string
+import randomtimestamp
 
+# ACCOUNT GENERATOR
+
+# 1,000,000 tweets
+# famous = 25,000 (25,000 * 30 = 750,000)
+# average = 250 (250 * 900 = 225,000
+# newsSource = 20 (20 * 1250 = 25,000)
+
+users = []
+for i in range (2180):
+    username = i
+    users.append(username)
+
+famousAccounts = []
+averageAccounts = []
+newsSourceAccounts = []
+
+famousAccounts = users[:30]
+print(famousAccounts)
+print(len(famousAccounts))
+averageAccounts = users[30:930]
+print(averageAccounts)
+print(len(averageAccounts))
+newsSourceAccounts = users[930:]
+print(newsSourceAccounts)
+print(len(newsSourceAccounts))
+
+with open('following.csv', 'w') as outfile:
+    csv_writer = writer(outfile, delimiter=',', quotechar='"')
+    csv_writer.writerow(['user', 'follows'])
+    for i in famousAccounts:
+        following = random.sample(famousAccounts,15)
+        for k in following:
+            csv_writer.writerow([i,k])
+    for i in averageAccounts:
+        following = random.sample(averageAccounts,100)
+        following = following + random.sample(famousAccounts,20)
+        for k in following:
+            csv_writer.writerow([i,k])
+    for i in newsSourceAccounts:
+        following = famousAccounts
+        for k in following:
+            csv_writer.writerow([i,k])
+
+# TWEET GENERATOR
 
 with open('tweets.csv', 'w') as outfile:
     csv_writer = writer(outfile, delimiter=',', quotechar='"')
-    csv_writer.writerow(['tweet_id', 'user_id', 'tweet_ts', 'tweet_text'])
-    for tweet_id in range(1000000):
-        user_id = tweet_id % 7
-        csv_writer.writerow([tweet_id, user_id, ])
-
+    csv_writer.writerow(['tweet_id','user_id', 'tweet_ts', 'tweet_text'])
+    for i in famousAccounts:
+        for k in range(25000):
+            randomTweet = ''.join([random.choice(string.ascii_letters + string.digits) for n in range(45)])
+            time = randomtimestamp.randomtimestamp(start_year = 2006)
+            tweet_id = k
+            csv_writer.writerow([tweet_id, i, time,randomTweet])
+    for i in averageAccounts:
+        for k in range(250):
+            randomTweet = ''.join([random.choice(string.ascii_letters + string.digits) for n in range(45)])
+            time = randomtimestamp.randomtimestamp(start_year=2006)
+            tweet_id = k+750000
+            csv_writer.writerow([tweet_id, i, time, randomTweet])
+    for i in newsSourceAccounts:
+        for k in range(20):
+            randomTweet = ''.join([random.choice(string.ascii_letters + string.digits) for n in range(45)])
+            time = randomtimestamp.randomtimestamp(start_year=2006)
+            tweet_id = k+975000
+            csv_writer.writerow([tweet_id, i, time, randomTweet])
+    print('done')
