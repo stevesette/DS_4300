@@ -4,10 +4,10 @@ import mysql.connector
 class MySQLConnector:
     def __init__(
         self,
-        user,
-        password,
-        host="127.0.0.1",
-        database="tweets_4300",
+        user='tweetinsertuser',
+        password='tweettweet',
+        host="localhost",
+        database="twitter_4300",
     ):
         print("test")
         self.connection = mysql.connector.connect(

@@ -1,12 +1,12 @@
-from odbc_wrappers.MySQLConnector import MySQLConnector
 import csv
-import datetime.datetime as dt
+import datetime as dt
+
+from odbc_wrappers.MySQLConnector import MySQLConnector
 
 
 def pick_db(mysql=True):
     if mysql:
-        # TODO get mysql credentials
-        return MySQLConnector('CHANGEME_USER', 'CHANGEME_PASS')
+        return MySQLConnector()
     else:
         # TODO add redis connector
         return None
@@ -21,10 +21,10 @@ def read_tweets(filepath):
 def upload_all_tweets(db_conn, tweets):
     # TODO figure out how this works
     with db_conn() as db:
-        start = dt.now()
+        start = dt.datetime.now()
         for tweet in tweets:
             upload_one_tweet(db, tweet)
-        return dt.now() - start
+        return dt.datetime.now() - start
 
 
 # Uploads one tweet
