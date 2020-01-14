@@ -22,6 +22,7 @@ class MySQLConnector:
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
+        self.connection.commit()
         self.connection.close()
 
     def insert_one(self, tweet):
@@ -29,4 +30,3 @@ class MySQLConnector:
                        f"(tweet_id, user_id, tweet_ts, tweet_text) " \
                        f"VALUES {tuple([int(tweet[0]),int(tweet[1]),tweet[2], tweet[3]])};"
         self.cursor.execute(insert_query)
-        self.connection.commit()
