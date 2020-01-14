@@ -15,10 +15,7 @@ def pick_db(mysql=True):
 def read_tweets(filepath):
     with open(filepath, 'r') as infile:
         reader = csv.reader(infile)
-        l = []
-        for i in reader:
-            l.append(i)
-        return l
+        return [x for x in reader]
 
 
 # Uploads all tweets, tracking time from start to finish
