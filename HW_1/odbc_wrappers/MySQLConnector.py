@@ -30,3 +30,15 @@ class MySQLConnector:
                        f"(tweet_id, user_id, tweet_ts, tweet_text) " \
                        f"VALUES {tuple([int(tweet[0]),int(tweet[1]),tweet[2], tweet[3]])};"
         self.cursor.execute(insert_query)
+        self.connection.commit()
+
+    def get_timeline(self, user):
+        return_timeline = f"SELECT t.user_id, tweet_text " \
+                        f"FROM {self.database}.tweets t " \
+                        f"INNER JOIN {self.database}.followers f ON t.user_id = f.follows_id " \
+                        f"WHERE f.user_id = {user} " \
+                        f"ORDER BY tweet_ts DESC " \
+                        f"LIMIT 10;"
+        self.cursor.execute(return_timeline)
+        return self.cursor.fetchall()
+
