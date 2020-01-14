@@ -29,7 +29,7 @@ def upload_all_tweets(db_conn, tweets):
         start = dt.datetime.now()
         for tweet in tweets:
             upload_one_tweet(db, tweet)
-        return dt.datetime.now() - start
+        return (dt.datetime.now() - start) / len(tweets)
 
 
 # Uploads one tweet
