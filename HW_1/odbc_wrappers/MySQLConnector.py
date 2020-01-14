@@ -22,6 +22,7 @@ class MySQLConnector:
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
+        self.connection.commit()
         self.connection.close()
 
     def insert_one(self, tweet):
@@ -40,3 +41,4 @@ class MySQLConnector:
                         f"LIMIT 10;"
         self.cursor.execute(return_timeline)
         return self.cursor.fetchall()
+
