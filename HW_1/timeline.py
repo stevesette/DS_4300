@@ -19,7 +19,7 @@ def timeline(db_conn, loops):
         for i in range(loops):
             user = randint(0, 2179)
             db.get_timeline(user)
-        return (dt.datetime.now() - start) / loops
+        return loops / (dt.datetime.now() - start).total_seconds()
 
 
 def main():
