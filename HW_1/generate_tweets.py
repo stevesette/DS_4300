@@ -1,5 +1,5 @@
 from csv import writer
-from datetime import datetime
+from datetime import datetime as dt
 import random
 import string
 import randomtimestamp
@@ -48,7 +48,7 @@ with open('following.csv', 'w') as outfile:
             csv_writer.writerow([i,k])
 
 # TWEET GENERATOR
-
+start = dt.now()
 with open('tweets.csv', 'w') as outfile:
     csv_writer = writer(outfile, delimiter=',', quotechar='"')
     csv_writer.writerow(['tweet_id','user_id', 'tweet_ts', 'tweet_text'])
@@ -74,3 +74,5 @@ with open('tweets.csv', 'w') as outfile:
             tweet_id = k+975000
             csv_writer.writerow([tweet_id, i, timestamp, randomTweet])
     print('done')
+writing_time = (dt.now() - start).total_seconds()
+print(f"It took {writing_time} to write 1 million tweets which is an optimal rate of {writing_time/1000000}")
