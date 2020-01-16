@@ -29,7 +29,10 @@ def upload_all_tweets(db_conn, tweets):
 
 def main():
     db_type = pick_db()
-    tweets = read_tweets('tweets.csv')[1:10000000]
+    start_read = dt.datetime.now()
+    tweets = read_tweets('tweets.csv')[1:]
+    reading_time = (dt.datetime.now() - start_read).total_seconds()
+    print(f"It took {reading_time} to read 1 million tweets which means it has a rate of {reading_time/len(tweets)}")
     print(upload_all_tweets(db_type, tweets))
 
 
