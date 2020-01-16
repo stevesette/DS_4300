@@ -29,7 +29,6 @@ class MySQLConnector:
             f"VALUES {tuple([int(tweet[0]),int(tweet[1]),tweet[2], tweet[3]])};"
         )
         self.cursor.execute(insert_query)
-        self.connection.commit()
 
     def get_timeline(self, user):
         return_timeline = (
