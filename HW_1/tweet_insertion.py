@@ -13,7 +13,7 @@ def pick_db(mysql=True):
 
 
 def read_tweets(filepath):
-    with open(filepath, 'r') as infile:
+    with open(filepath, "r") as infile:
         reader = csv.reader(infile)
         return [x for x in reader]
 
@@ -30,11 +30,13 @@ def upload_all_tweets(db_conn, tweets):
 def main():
     db_type = pick_db()
     start_read = dt.datetime.now()
-    tweets = read_tweets('tweets.csv')[1:]
+    tweets = read_tweets("tweets.csv")[1:]
     reading_time = (dt.datetime.now() - start_read).total_seconds()
-    print(f"It took {reading_time} to read 1 million tweets which means it has a rate of {reading_time/len(tweets)}")
+    print(
+        f"It took {reading_time} to read 1 million tweets which means it has a rate of {reading_time/len(tweets)}"
+    )
     print(upload_all_tweets(db_type, tweets))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
