@@ -33,7 +33,7 @@ def main():
     tweets = read_tweets("tweets.csv")[1:]
     reading_time = (dt.datetime.now() - start_read).total_seconds()
     print(
-        f"It took {reading_time} to read 1 million tweets which means it has a rate of {reading_time/len(tweets)}"
+        f"It took {reading_time} to read 1 million tweets which means it has a rate of {len(tweets)/reading_time}"
     )
     print(upload_all_tweets(db_type, tweets))
 
