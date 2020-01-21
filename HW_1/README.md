@@ -79,7 +79,7 @@ This may not be representative of Twitter's actual performance with MySQL before
 Overall, it is clear that we are not close to optimal performance. In addition, it is clear that we are not going to perform as well as the 4,000-6,000 tweets that Twitter actually receives per second.
 However, since this is trying to imitate a smaller version of Twitter, with fewer users (since this is the beginning of Twitter), and slower hardware to process the data to the database, this is not too far off from a working version of Twitter.
 
-####3B:
+#### 3B:
 When thinking about optimal performance for reading a timeline, we compare the complex join query to the act of simply reading a line in a file. 
 The first time we read the file in we found it took 5.085 seconds to read 1 million tweets.
 This results in a rate of 196,668.05 tweets / second. Therefore, a timeline of 10 tweets would mean that we have an optimal performance of 19,666.81 timelines / second.
