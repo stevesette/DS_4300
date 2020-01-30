@@ -2,15 +2,7 @@ from random import seed
 from random import randint
 import datetime as dt
 
-from odbc_wrappers.MySQLConnector import MySQLConnector
-
-
-def pick_db(mysql=True):
-    if mysql:
-        return MySQLConnector
-    else:
-        # TODO add redis connector
-        return None
+from utils import pick_db
 
 
 def timeline(db_conn, loops):
@@ -24,7 +16,7 @@ def timeline(db_conn, loops):
 
 def main():
     seed(10)
-    db_conn = pick_db()
+    db_conn = pick_db(0)
     # try 50 loops
     print(timeline(db_conn, 50))
 
