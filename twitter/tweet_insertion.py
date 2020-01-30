@@ -1,15 +1,7 @@
 import csv
 import datetime as dt
 
-from odbc_wrappers.MySQLConnector import MySQLConnector
-
-
-def pick_db(mysql=True):
-    if mysql:
-        return MySQLConnector
-    else:
-        # TODO add redis connector
-        return None
+from utils import pick_db
 
 
 def read_tweets(filepath):
@@ -28,7 +20,7 @@ def upload_all_tweets(db_conn, tweets):
 
 
 def main():
-    db_type = pick_db()
+    db_type = pick_db(0)
     start_read = dt.datetime.now()
     tweets = read_tweets("tweets.csv")[1:]
     reading_time = (dt.datetime.now() - start_read).total_seconds()
