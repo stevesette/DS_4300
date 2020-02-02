@@ -18,14 +18,14 @@ class RedisConnector1:
 
     def insert_one(self, tweet):
         self.connection.rpush(tweet[1] + ":uid" + ":tid", tweet[0])
-        self.connection.hset(
-            tweet[1] + ":uid" + tweet[0] + ":tid", "text", tweet[3], "time", tweet[2]
-        )
+        self.connection.hset(tweet[1] + ":uid" + tweet[0] + ":tid", "text", tweet[3])
+        self.connection.hset(tweet[1] + ":uid" + tweet[0] + ":tid", "time", tweet[2])
 
     def get_timeline(self, user):
         followings = self.lrange(user + ":uid" + ":following")
         all_tweets = []
         for following in followings:
+            following = str(following)
             tweet_ids = self.lrange(following + ":uid" + ":tid")
             all_tweets.extend(
                 [

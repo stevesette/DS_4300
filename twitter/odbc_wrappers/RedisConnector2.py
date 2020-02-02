@@ -20,17 +20,19 @@ class RedisConnector2:
     def insert_one(self, tweet):
         self.connection.hset(
             tweet[1] + ":uid" + tweet[0] + ":tid",
-            "text",
-            tweet[3],
-            "time",
-            tweet[2],
-            "user_id",
-            tweet[1],
-            "tweet_id",
-            tweet[0],
-        )
+            "text", tweet[3])
+        self.connection.hset(
+            tweet[1] + ":uid" + tweet[0] + ":tid",
+            "time", tweet[2])
+        self.connection.hset(
+            tweet[1] + ":uid" + tweet[0] + ":tid",
+            "user_id", tweet[1])
+        self.connection.hset(
+            tweet[1] + ":uid" + tweet[0] + ":tid",
+            "tweet_id", tweet[0])
         followers = self.lrange(tweet[1] + ":uid" + ":follows")
         for i in followers:
+            i = str(i)
             self.connection.rpush(
                 i + ":uid" + ":timeline", tweet[1] + ":uid" + tweet[0] + ":tid"
             )
@@ -39,6 +41,7 @@ class RedisConnector2:
         tweets = self.lrange(user + ":uid" + ":timeline", start=-10)
         timeline_tweets = []
         for i in tweets:
+            i = str(i)
             tweet_text = self.connection.hget(i, "text")
             tweet_time = self.connection.hget(i, "time")
             tweet_user_id = self.connection.hget(i, "user_id")

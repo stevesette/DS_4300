@@ -20,7 +20,7 @@ def upload_all_tweets(db_conn, tweets):
 
 
 def main():
-    db_type = pick_db(0)
+    db_type = pick_db(2)
     start_read = dt.datetime.now()
     tweets = read_tweets("tweets.csv")[1:]
     reading_time = (dt.datetime.now() - start_read).total_seconds()
