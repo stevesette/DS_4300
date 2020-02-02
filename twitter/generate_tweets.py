@@ -88,10 +88,10 @@ print(
     f"It took {writing_time} to write 1 million tweets which is an optimal rate of {writing_time/1000000}"
 )
 
-data = csv.reader(open('tweets.csv'),delimiter=',')
+data = csv.reader(open("tweets.csv"), delimiter=",")
 sorted = sorted(data, key=operator.itemgetter(2))
 
 with open("tweets.csv", "w") as f:
-    fileWriter = csv.writer(f, delimiter=',')
+    fileWriter = csv.writer(f, delimiter=",")
     for row in sorted:
         fileWriter.writerow(row)

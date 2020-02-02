@@ -17,9 +17,9 @@ def upload_all_follows(db_conn, following):
 
 def main():
     db_type = pick_db(1)
-    following_data = read_follows('following.csv')
+    following_data = read_follows("following.csv")
     upload_all_follows(db_type, following_data)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
