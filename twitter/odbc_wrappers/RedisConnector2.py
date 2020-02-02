@@ -16,7 +16,7 @@ class RedisConnector2:
     def insert_following(self, follow):
         self.connection.rpush(follow[1] + ":uid" + ":follows", follow[0])
 
-    ## 0 = tweet ID, 1 = user ID, 2 = timestamp, 3 = text
+    # 0 = tweet ID, 1 = user ID, 2 = timestamp, 3 = text
     def insert_one(self, tweet):
         self.connection.hset(
             tweet[1] + ":uid" + tweet[0] + ":tid",
