@@ -31,11 +31,13 @@ class RedisConnector2:
             tweet[1] + ":uid" + tweet[0] + ":tid",
             "tweet_id", tweet[0])
         followers = self.lrange(tweet[1] + ":uid" + ":follows")
+        pipe = self.connection.pipeline()
         for i in followers:
             i = str(i)
-            self.connection.rpush(
+            pipe.rpush(
                 i + ":uid" + ":timeline", tweet[1] + ":uid" + tweet[0] + ":tid"
             )
+        pipe.execute()
 
     def get_timeline(self, user):
         tweets = self.lrange(user + ":uid" + ":timeline", start=-10)
