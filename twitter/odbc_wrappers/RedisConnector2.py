@@ -5,7 +5,7 @@ class RedisConnector2:
     """ Python-ODBC Connector for strategy 2 for implementing twitter using Redis """
 
     def __init__(self):
-        self.connection = redis.Redis(db=2)
+        self.connection = redis.Redis(db=2, charset='utf-8', decode_responses=True)
 
     def __enter__(self):
         return self
@@ -18,18 +18,8 @@ class RedisConnector2:
 
     # 0 = tweet ID, 1 = user ID, 2 = timestamp, 3 = text
     def insert_one(self, tweet):
-        self.connection.hset(
-            tweet[1] + ":uid" + tweet[0] + ":tid",
-            "text", tweet[3])
-        self.connection.hset(
-            tweet[1] + ":uid" + tweet[0] + ":tid",
-            "time", tweet[2])
-        self.connection.hset(
-            tweet[1] + ":uid" + tweet[0] + ":tid",
-            "user_id", tweet[1])
-        self.connection.hset(
-            tweet[1] + ":uid" + tweet[0] + ":tid",
-            "tweet_id", tweet[0])
+        self.connection.hmset(tweet[1] + ":uid" + tweet[0] + ":tid", {"text": tweet[3], "time": tweet[2],
+                                                                      "user_id": tweet[1], "tweet_id": tweet[0]})
         followers = self.lrange(tweet[1] + ":uid" + ":follows")
         pipe = self.connection.pipeline()
         for i in followers:
