@@ -1,0 +1,4 @@
+import PyMongo
+
+class MongoConnector:
+    
