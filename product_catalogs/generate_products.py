@@ -1,5 +1,7 @@
 import random
 import string
+import json
+
 from random import randrange
 
 categories = ['Watches', 'Couches', 'Kitchen', 'Rugs', 'Appliances', 'Pants', 'Shoes']
@@ -20,15 +22,17 @@ for i in range(70):
     attributes['brand'] = brand
     attributes['color'] = color
     attributes['price'] = price
-    attributes['category'] = category
     if category == 'Watches':
         attributes['diameter'] = randrange(30,50)
         random.shuffle(all_colors)
         dial_color = all_colors[0]
         attributes['dial_color'] = dial_color
     product_catalog.append(attributes)
-
-searched_attr = {'product_id': 71, 'product_name': 'johnson', 'brand': 'Tommy Hilfiger', 'color': 'beige',
-                 'price': 6870, 'category': 'Watches', 'diameter': 40, 'dial_color': 'beige'}
-product_catalog.append(searched_attr)
-
+    if i % 10 == 9:
+        if category == 'Watches':
+            searched_attr = {'product_id': 71, 'product_name': 'johnson', 'brand': 'Tommy Hilfiger', 'color': 'beige',
+                             'price': 6870, 'diameter': 40, 'dial_color': 'beige'}
+            product_catalog.append(searched_attr)
+        with open('Collections/' + category + '.json', 'w') as f:
+            json.dump(product_catalog, f)
+        product_catalog = []
