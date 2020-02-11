@@ -1,9 +1,9 @@
-import PyMongo
+import pymongo
 
 
 class MongoConnector:
     def __init__(self):
-        pass
+        self.db = pymongo.MongoClient("mongodb://localhost:27017/")
 
     def __enter__(self):
         pass
@@ -14,5 +14,6 @@ class MongoConnector:
     def insert_products(self):
         pass
 
-    def get_products(self):
+    def query_products(self, collection, **kwargs):
         pass
+
