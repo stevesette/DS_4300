@@ -3,13 +3,15 @@ from utils import pick_db
 
 def main():
     db = pick_db(0)
-    run_queries(db)
+    query_vals = run_queries(db)
+    print(query_vals)
 
 
-def run_queries(db):
-    collection = 'Watches'
-    query = {'dialcolor': 'beige', 'brand': 'Tommy Hilfiger', 'diameter': 44, 'is_available': 1}
-    db.run_query(collection, query)
+def run_queries(db_conn):
+    with db_conn() as db:
+        collection = 'Watches'
+        query = {'dial_color': 'beige', 'brand': 'Tommy Hilfiger', 'diameter': 40, 'is_available': 1}
+        return db.run_query(collection, query)
 
 
 if __name__ == '__main__':
