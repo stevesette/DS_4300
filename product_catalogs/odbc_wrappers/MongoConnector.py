@@ -4,7 +4,7 @@ import pymongo
 class MongoConnector:
     def __init__(self):
         self.connection = pymongo.MongoClient("mongodb://127.0.0.1:27017/")
-        self.db = self.connection['hw3']
+        self.db = self.connection["hw3"]
 
     def __enter__(self):
         return self
@@ -13,8 +13,7 @@ class MongoConnector:
         pass
 
     def insert_file(self, filename, filedata):
-        col = self.db[filename]
-        col.insert_many(filedata)
+        self.db[filename].insert_many(filedata)
 
     def run_query(self, collection, query):
         col = self.db[collection]

@@ -9,10 +9,15 @@ def main():
 
 def run_queries(db_conn):
     with db_conn() as db:
-        collection = 'Watches'
-        query = {'dial_color': 'beige', 'brand': 'Tommy Hilfiger', 'diameter': 40, 'is_available': 1}
+        collection = "Watches"
+        query = {
+            "dial_color": "beige",
+            "brand": "Tommy Hilfiger",
+            "diameter": 40,
+            "is_available": 1,
+        }
         return db.run_query(collection, query)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
