@@ -7,18 +7,18 @@ Please check the product_catalogs directory for all of our code since we reused 
 
 ### SQL Queries:
     - Approach 1: 
-                SELECT product_name,
+            SELECT product_name,
 			   brand,
 			   diameter
 			   dial_color,
 			   price
-		    FROM products
-		    WHERE category = ‘Watches’
+		FROM products
+		WHERE category = ‘Watches’
             AND diameter = 44
-		    AND brand = ‘Tommy Hilfiger’
-		    AND dial_color = ‘Beige’
-		    AND is_available = 1
-		    ORDER BY price ASC
+		AND brand = ‘Tommy Hilfiger’
+		AND dial_color = ‘Beige’
+		AND is_available = 1
+		ORDER BY price ASC
 		    
     - Approach 2: 
             SELECT p.product_name,
@@ -32,14 +32,14 @@ Please check the product_catalogs directory for all of our code since we reused 
 		INNER JOIN watches w
 		ON w.product_id = p.product_id
 		WHERE c.category_name = ‘Watches’
-        AND = w.diameter = 44
+            AND = w.diameter = 44
 		AND w.brand = ‘Tommy Hilfiger’
 		AND w.dial_color = ‘Beige’
 		AND p.is_available = 1
 		ORDER BY p.price ASC
 
     - Approach 3:
-        SELECT p.product_name,
+            SELECT p.product_name,
 			   w.brand,
 			   w.dial_color,
 			   w.diameter,
@@ -50,7 +50,7 @@ Please check the product_catalogs directory for all of our code since we reused 
 		INNER JOIN watches w
 		ON w.product_id = p.product_id
 		WHERE c.category_name = ‘Watches’
-        AND = w.diameter = 44
+            AND = w.diameter = 44
 		AND w.brand = ‘Tommy Hilfiger’
 		AND w.dial_color = ‘Beige’
 		AND p.is_available = 1
@@ -58,21 +58,24 @@ Please check the product_catalogs directory for all of our code since we reused 
  
     - Approach 4:
         Ret = []
-	For key in (Keys *):
+        
+	    For key in (Keys *):
 		If hmget(key, ‘category’) == ‘watch’ and hmget(key, ‘brand’) == ‘Tommy Hilfiger’ and hmget(key, ‘dialcolor’) == ‘beige’ and hmget(key, ‘diameter’) == 44 and hmget(key, ‘is_available’) == 1:
-			D = {}
-    D[‘product_id’] = key
-    D[‘product_name’] = hmget(key, ‘product_name’)
-    D[‘price’] = hmget(key, ‘price’)
-    D[‘category’] = ‘watch’
-    D[‘brand’] = ‘Tommy Hilfiger’
-    D[‘dialcolor’] = ‘beige’
-    D[‘diameter’] = 44
-    ret.append(D)
-    Return ret
+		    D = {}
+		    
+        D[‘product_id’] = key
+        D[‘product_name’] = hmget(key, ‘product_name’)
+        D[‘price’] = hmget(key, ‘price’)
+        D[‘category’] = ‘watch’
+        D[‘brand’] = ‘Tommy Hilfiger’
+        D[‘dialcolor’] = ‘beige’
+        D[‘diameter’] = 44
+    
+        ret.append(D)
+        Return ret
     
     - Approach 5:
-      db.watches.find( {dialcolor : ‘beige’, brand: ‘Tommy Hilfiger’, diameter: 44, is_available: 1})
+        db.watches.find( {dialcolor : ‘beige’, brand: ‘Tommy Hilfiger’, diameter: 44, is_available: 1})
       
 ### Synopsis:
 
@@ -80,4 +83,17 @@ Please check the product_catalogs directory for all of our code since we reused 
 
 ### Code:
 
+    def run_queries(db_conn):
+        with db_conn() as db:
+            collection = "Watches"
+            query = {
+                "dial_color": "beige",
+                "brand": "Tommy Hilfiger",
+                "diameter": 40,
+                "is_available": 1,
+            }
+        return db.run_query(collection, query)
+
 ### Output:
+
+    [{'_id': ObjectId('5e457db5293feea95ae0d277'), 'product_id': 71, 'product_name': 'johnson', 'brand': 'Tommy Hilfiger', 'color': 'beige', 'price': 6870, 'diameter': 40, 'dial_color': 'beige', 'is_available': 1}]
