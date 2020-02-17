@@ -2,6 +2,12 @@ import pymongo
 
 
 class MongoConnector:
+    """
+    We define the database as 'hw3' manually in this assignment to make the assignment simpler, we could have taken
+    that in as a variable when we defined the connection but with no other odbc connector to compare to in this assignment
+    it seemed a bit pointless.
+    """
+
     def __init__(self):
         self.connection = pymongo.MongoClient("mongodb://127.0.0.1:27017/")
         self.db = self.connection["hw3"]
