@@ -68,14 +68,15 @@ Please check the product_catalogs directory for all of our code since we reused 
         D[‘price’] = hmget(key, ‘price’)
         D[‘category’] = ‘watch’
         D[‘brand’] = ‘Tommy Hilfiger’
-        D[‘dialcolor’] = ‘beige’
+        D[‘dial_color’] = ‘beige’
         D[‘diameter’] = 44
+        D['is_available'] = 1
     
         ret.append(D)
         Return ret
     
     - Approach 5:
-        db.watches.find( {dialcolor : ‘beige’, brand: ‘Tommy Hilfiger’, diameter: 44, is_available: 1})
+        db.watches.find( {dial_color : ‘beige’, brand: ‘Tommy Hilfiger’, diameter: 44, is_available: 1})
       
 ### Synopsis:
 
