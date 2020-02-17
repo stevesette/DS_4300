@@ -79,6 +79,41 @@ Please check the product_catalogs directory for all of our code since we reused 
         db.watches.find( {dial_color : ‘beige’, brand: ‘Tommy Hilfiger’, diameter: 44, is_available: 1})
       
 ### Synopsis:
+    - Approach 1: This approach equires you to include many more attributes (which will for the most part be NULLs) due to the 
+    fact it needs to hold data for thousands of categories in one table. Because it has to hold tens of millions of products, 
+    it will take a long time to query this one table, especially given many input conditions. However, not needing to join across 
+    multiple large tables is an advantage in terms of speed and efficiency. The database admin is going to have a heart attack 
+    because this approach doesn’t follow any type of normal form. This orientationis ideal for machine learning approaches 
+    since an analytical dataset is readily available with all fields and some simple feature generation can be done to condense 
+    this dataset into a more concise model.
+
+    - Approach 2: This approach requires joining across three tables in order to pull information for a specific query with 
+    multiple conditions, which can take time especially for categories with lots of products. Is efficient in terms of 
+    minimizing the amount of data held in total, as opposed to the first strategy where each row has to have data for every 
+    attribute across every product category (majority NULLs), this method only requires you to fill attributes relevant to 
+    the specific category. One final challenge with this strategy may be that joining to each unique category table requires 
+    precise naming conventions (changing / updating category names).
+
+    - Approach 3: With approach 3, joining to and the querying from the Property table may be inefficient as it has one row 
+    for each attribute of each product, which ends up being millions and millions of rows. This would require subquerying 
+    or self joins in order to execute a query searching for multiple conditions which is not overly efficient. Comparing 
+    this to strategy two above, this is less efficient in the sense that querying for a category with 5 attributes requires 
+    you to read through the table 5 times regardless of how many products in the category you are querying for, where as in 
+    strategy two you just query through the specific table of products in that category.
+
+    - Approach 4: Using a key-value store approach, Each key is the product id which is a unique identifier for the product. 
+    This key points to a hashmap which contains all of the values for that product. The process here requires you to loop 
+    through every key that we have stored in the database and check if it meets the requirements of a query by checking the 
+    hashmap for its values against the required attributes for the query. There are other approaches where we could store 
+    all of each category in a list where the key is category name and the value is a list of product ids but this still would 
+    require pulling out each product id and checking its hashmap for whether or not the attributes meet the query expectations. 
+    It is limited by the fact that there is no such thing as querying by field in key-value stores and is inherently a slow 
+    process.
+    
+    - Approach 5: The database has a collection for each category that could be queried on. Then once the collection is 
+    selected, one could leverage Mongo to query directly against the attributes we are looking for. It is incredibly simple 
+    and supports the changing attribute structure of each category very well.
+
 
 # Part II:
 
