@@ -16,8 +16,4 @@ class MongoConnector:
         self.db[filename].insert_many(filedata)
 
     def run_query(self, collection, query):
-        col = self.db[collection]
-        ret = []
-        for x in col.find(query):
-            ret.append(x)
-        return ret
+        return [x for x in self.db[collection].find(query)]
