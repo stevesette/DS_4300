@@ -3,6 +3,14 @@
 ## NOTE
 Please check the product_catalogs directory for all of our code since we reused some code from HW1 and HW2. We thought that adjusting our directory structure for this made the most sense in a program organizational manner.
 
+# Contributions
+MongoConnector.py - Steve /
+generate_products.py - Jack  /
+insert_products.py - Steve  /
+get_products.py - Steve and Jack / 
+utils.py - Steve and Jack (similar to hw2) /
+ReadMe - Jack /
+
 # PART I: 
 
 ### SQL Queries:
@@ -132,11 +140,3 @@ Please check the product_catalogs directory for all of our code since we reused 
 ### Output:
 
     [{'_id': ObjectId('5e457db5293feea95ae0d277'), 'product_id': 71, 'product_name': 'johnson', 'brand': 'Tommy Hilfiger', 'color': 'beige', 'price': 6870, 'diameter': 40, 'dial_color': 'beige', 'is_available': 1}]
-
-# Contributions
-MongoConnector.py - Steve
-generate_products.py - Jack
-insert_products.py - Steve
-get_products.py - Steve and Jack
-utils.py - Steve and Jack (similar to hw2)
-ReadMe - Jack
