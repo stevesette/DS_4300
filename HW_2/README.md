@@ -1,4 +1,10 @@
-# Homework 2 Analysis (Jack Tonina & Steve Setteducatti)
+# Homework 2 Analysis (Jack Tonina & Steve Setteducati)
+# Contributions:
+RedisConnector1 - Steve\
+RedisConnector2 - Jack\
+followinsert.py - Steve\
+utils - Steve (just moved folder)\
+ReadMe Analysis - Jack/Steve (paired writing)
 
 ## NOTE
 Please check the Twitter directory for all of our code since it is shared between HW1 and HW2. We thought that adjusting our directory structure for this made the most sense in a program organizational manner. It is also worth noting that all of the computer specs from HW1's analysis readme are reflected in HW2 as well. Since this was not mentioned on the assignment PDF we figured we could leave out this redundant information and make this analysis as concise and focused toward the task we were given as possible.
@@ -39,10 +45,3 @@ Overall, we know that Strategy 2 should be what we support, but we can't. It is 
 
 ## Potential Changes in Hindsight
 Our initial assumptions may have been a little ambitious. The follower/following relationships as well as the breakdown of how many users in each bucket could have been shifted to a more even ratio between the 3 buckets. This likely would have seen a drastically improved performance for Strategy 2 and something more akin to what the expected outcome is on the grading end of this assignment. Even decreasing the number of tweets from famous accounts by 5,000 to 20,000 tweets each and increasing the amount ofd times the average user tweets would have drastic changes on the number of database calls made per insertion. In addition, changing the number of users and their distribution of follower/following relationships could also improve the performance. With that said, we truly believe that our initial assumptions were reasonable enough and backed by sufficient evidence and research in our daily Twitter use to affirm our beliefs.
-
-# Contributions:
-RedisConnector1 - Steve\
-RedisConnector2 - Jack\
-followinsert.py - Steve\
-utils - Steve (just moved folder)\
-ReadMe Analysis - Jack/Steve (paired writing)
